@@ -1,3 +1,4 @@
+# all the imports used throughout the main file
 import sys
 import subprocess
 import cv2
@@ -5,31 +6,32 @@ import time
 import numpy as np
 from best_fit import fit
 from rectangle import Rectangle
-from note import Note
+from note import Note   
 from random import randint
 from MidiFile3 import MIDIFile
 
+# getting the files form the musicImages folder and turning them into list sorted by the type of music image they represent
 staff_files = [
-    "resources/template/staff2.png", 
-    "resources/template/staff.png"]
+    "musicImages/staff2.png", 
+    "musicImages/staff.png"]
 quarter_files = [
-    "resources/template/quarter.png", 
-    "resources/template/solid-note.png"]
+    "musicImages/quarter.png", 
+    "musicImages/solid-note.png"]
 sharp_files = [
-    "resources/template/sharp.png"]
+    "musicImages/sharp.png"]
 flat_files = [
-    "resources/template/flat-line.png", 
-    "resources/template/flat-space.png" ]
+    "musicImages/flat-line.png", 
+    "musicImages/flat-space.png" ]
 half_files = [
-    "resources/template/half-space.png", 
-    "resources/template/half-note-line.png",
-    "resources/template/half-line.png", 
-    "resources/template/half-note-space.png"]
+    "musicImages/half-space.png", 
+    "musicImages/half-note-line.png",
+    "musicImages/half-line.png", 
+    "musicImages/half-note-space.png"]
 whole_files = [
-    "resources/template/whole-space.png", 
-    "resources/template/whole-note-line.png",
-    "resources/template/whole-line.png", 
-    "resources/template/whole-note-space.png"]
+    "musicImages/whole-space.png", 
+    "musicImages/whole-note-line.png",
+    "musicImages/whole-line.png", 
+    "musicImages/whole-note-space.png"]
 
 staff_imgs = [cv2.imread(staff_file, 0) for staff_file in staff_files]
 quarter_imgs = [cv2.imread(quarter_file, 0) for quarter_file in quarter_files]
@@ -81,8 +83,12 @@ def open_file(path):
     subprocess.run([cmd, path])
 
 if __name__ == "__main__":
-    #img_file = sys.argv[1:][0]
-    img_file = "fire.jpg"
+    #creating a list to hold all the playable sheetmusic 
+    sheet_music = [
+        "playableMusic/fire.jpg",
+        "playableMusic/lost.jpg",
+    ]
+    img_file =  sheet_music[1]
     img = cv2.imread(img_file, 0)
     img_gray = img#cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     img = cv2.cvtColor(img_gray,cv2.COLOR_GRAY2RGB)
