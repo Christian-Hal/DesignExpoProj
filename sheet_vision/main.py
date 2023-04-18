@@ -10,6 +10,12 @@ from note import Note
 from random import randint
 from MidiFile3 import MIDIFile
 
+sheet_music = [
+        "playableMusic/fire.jpg",
+        "playableMusic/lost.jpg",
+    ]
+IMAGE = sheet_music[1]
+
 # getting the files form the musicImages folder and turning them into list sorted by the type of music image they represent
 staff_files = [
     "musicImages/staff2.png", 
@@ -83,12 +89,8 @@ def open_file(path):
     subprocess.run([cmd, path])
 
 if __name__ == "__main__":
-    #creating a list to hold all the playable sheetmusic 
-    sheet_music = [
-        "playableMusic/fire.jpg",
-        "playableMusic/lost.jpg",
-    ]
-    img_file =  sheet_music[1]
+    #creating a list to hold all the playable sheetmusic
+    img_file =  IMAGE
     img = cv2.imread(img_file, 0)
     img_gray = img#cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     img = cv2.cvtColor(img_gray,cv2.COLOR_GRAY2RGB)
