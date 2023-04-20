@@ -13,8 +13,12 @@ from MidiFile3 import MIDIFile
 sheet_music = [
         "playableMusic/fire.jpg",
         "playableMusic/lost.jpg",
+        "playableMusic/zelda.jpg",
+        "playableMusic/pirates.jpg",
     ]
-IMAGE = sheet_music[1]
+IMAGE = sheet_music[2]
+
+
 
 # getting the files form the musicImages folder and turning them into list sorted by the type of music image they represent
 staff_files = [
@@ -92,9 +96,10 @@ if __name__ == "__main__":
     #creating a list to hold all the playable sheetmusic
     img_file =  IMAGE
     img = cv2.imread(img_file, 0)
-    img_gray = img#cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    img_gray = img
     img = cv2.cvtColor(img_gray,cv2.COLOR_GRAY2RGB)
     ret,img_gray = cv2.threshold(img_gray,127,255,cv2.THRESH_BINARY)
+    img_gray = cv2.GaussianBlur(img_gray, (5, 5), 0)
     img_width, img_height = img_gray.shape[::-1]
 
     print("Matching staff image...")
