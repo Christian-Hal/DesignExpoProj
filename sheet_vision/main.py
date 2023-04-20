@@ -1,4 +1,6 @@
 # all the imports used throughout the main file
+from GUI import GUI
+import GUI
 import sys
 import subprocess
 import cv2
@@ -9,6 +11,7 @@ from rectangle import Rectangle
 from note import Note   
 from random import randint
 from MidiFile3 import MIDIFile
+<<<<<<< HEAD
 
 sheet_music = [
         "playableMusic/fire.jpg",
@@ -56,42 +59,22 @@ flat_lower, flat_upper, flat_thresh = 50, 150, 0.77
 quarter_lower, quarter_upper, quarter_thresh = 50, 150, 0.70
 half_lower, half_upper, half_thresh = 50, 150, 0.70
 whole_lower, whole_upper, whole_thresh = 50, 150, 0.70
+=======
+from PyQt5 import QtWidgets, QtCore, QtGui
+from PyQt5.QtWidgets import QApplication, QMainWindow
+>>>>>>> a9ad14a2a447f7db3148782bc0edfa9484b98fa4
 
 
-def locate_images(img, templates, start, stop, threshold):
-    locations, scale = fit(img, templates, start, stop, threshold)
-    img_locations = []
-    for i in range(len(templates)):
-        w, h = templates[i].shape[::-1]
-        w *= scale
-        h *= scale
-        img_locations.append([Rectangle(pt[0], pt[1], w, h) for pt in zip(*locations[i][::-1])])
-    return img_locations
+app = QtWidgets.QApplication(sys.argv)
+MainWindow = QtWidgets.QMainWindow()
+ui = GUI.GUI(app, MainWindow)
+ui.setUp()
+MainWindow.show()
+sys.exit(app.exec_())
 
-def merge_recs(recs, threshold):
-    filtered_recs = []
-    while len(recs) > 0:
-        r = recs.pop(0)
-        recs.sort(key=lambda rec: rec.distance(r))
-        merged = True
-        while(merged):
-            merged = False
-            i = 0
-            for _ in range(len(recs)):
-                if r.overlap(recs[i]) > threshold or recs[i].overlap(r) > threshold:
-                    r = r.merge(recs.pop(i))
-                    merged = True
-                elif recs[i].distance(r) > r.w/2 + recs[i].w/2:
-                    break
-                else:
-                    i += 1
-        filtered_recs.append(r)
-    return filtered_recs
 
-def open_file(path):
-    cmd = {'linux':'eog', 'win32':'explorer', 'darwin':'open'}[sys.platform]
-    subprocess.run([cmd, path])
 
+<<<<<<< HEAD
 if __name__ == "__main__":
     #creating a list to hold all the playable sheetmusic
     img_file =  IMAGE
@@ -260,3 +243,5 @@ if __name__ == "__main__":
     midi.writeFile(binfile)
     binfile.close()
     open_file('output.mid')
+=======
+>>>>>>> a9ad14a2a447f7db3148782bc0edfa9484b98fa4
