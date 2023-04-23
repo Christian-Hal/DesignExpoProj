@@ -11,17 +11,15 @@ from rectangle import Rectangle
 from note import Note   
 from random import randint
 from MidiFile3 import MIDIFile
-<<<<<<< HEAD
 
 sheet_music = [
         "playableMusic/fire.jpg",
         "playableMusic/lost.jpg",
         "playableMusic/zelda.jpg",
         "playableMusic/pirates.jpg",
+        "playableMusic/delune.jpg",
     ]
-IMAGE = sheet_music[2]
-
-
+IMAGE = sheet_music[4]
 
 # getting the files form the musicImages folder and turning them into list sorted by the type of music image they represent
 staff_files = [
@@ -59,11 +57,9 @@ flat_lower, flat_upper, flat_thresh = 50, 150, 0.77
 quarter_lower, quarter_upper, quarter_thresh = 50, 150, 0.70
 half_lower, half_upper, half_thresh = 50, 150, 0.70
 whole_lower, whole_upper, whole_thresh = 50, 150, 0.70
-=======
+
 from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtWidgets import QApplication, QMainWindow
->>>>>>> a9ad14a2a447f7db3148782bc0edfa9484b98fa4
-
 
 app = QtWidgets.QApplication(sys.argv)
 MainWindow = QtWidgets.QMainWindow()
@@ -72,9 +68,6 @@ ui.setUp()
 MainWindow.show()
 sys.exit(app.exec_())
 
-
-
-<<<<<<< HEAD
 if __name__ == "__main__":
     #creating a list to hold all the playable sheetmusic
     img_file =  IMAGE
@@ -243,5 +236,3 @@ if __name__ == "__main__":
     midi.writeFile(binfile)
     binfile.close()
     open_file('output.mid')
-=======
->>>>>>> a9ad14a2a447f7db3148782bc0edfa9484b98fa4

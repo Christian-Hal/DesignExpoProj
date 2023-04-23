@@ -87,6 +87,7 @@ def open_file(path):
 sheet_music = [
         "playableMusic/fire.jpg",
         "playableMusic/lost.jpg",
+        "playableMusic/delune.jpg",
     ]
 
 # creating the main window class for the GUI
