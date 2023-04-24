@@ -192,6 +192,7 @@ class GUI():
         img_gray = img#cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         img = cv2.cvtColor(img_gray,cv2.COLOR_GRAY2RGB)
         ret,img_gray = cv2.threshold(img_gray,127,255,cv2.THRESH_BINARY)
+        img_gray = cv2.GaussianBlur(img_gray, (5, 5), 0)
         img_width, img_height = img_gray.shape[::-1]
 
         print("Matching staff image...")
