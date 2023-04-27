@@ -2,6 +2,8 @@
 from GUI import GUI
 import GUI
 import sys
+<<<<<<< HEAD
+=======
 import subprocess
 import cv2
 import time
@@ -58,6 +60,7 @@ quarter_lower, quarter_upper, quarter_thresh = 50, 150, 0.70
 half_lower, half_upper, half_thresh = 50, 150, 0.70
 whole_lower, whole_upper, whole_thresh = 50, 150, 0.70
 
+>>>>>>> 5cfe37597f484e0c37c49586bd660954495dfc54
 from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtWidgets import QApplication, QMainWindow
 

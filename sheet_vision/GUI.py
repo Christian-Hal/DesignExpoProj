@@ -87,7 +87,6 @@ def open_file(path):
 sheet_music = [
         "playableMusic/fire.jpg",
         "playableMusic/lost.jpg",
-        "playableMusic/delune.jpg",
     ]
 
 # creating the main window class for the GUI
@@ -96,13 +95,14 @@ class GUI():
         self.app = app
         self.MainWindow = MainWindow
     index = 0
-    IMAGE = sheet_music[index]
     running = False
     # set up the window
     def setUp(self):
+        Width = 2000
+        Height = 1200
         # Main window
         self.MainWindow.setObjectName("ManinWindow")
-        self.MainWindow.setGeometry(0,0,2000,1200)
+        self.MainWindow.setGeometry(0,0,Width,Height)
         self.MainWindow.setStyleSheet("background-color: grey;")
 
         # generic central image
@@ -110,37 +110,36 @@ class GUI():
         self.centalImage.setObjectName("SheetMusic")
         # the current piece of sheet music 
         self.CurrentImage = QtWidgets.QLabel(self.centalImage)
-        self.CurrentImage.setGeometry(QtCore.QRect(590,50,800,800))
+        self.CurrentImage.setGeometry(QtCore.QRect(int(Width//3.3),int(Height//25),int(Width//3),int(Height//1.5)))
         self.CurrentImage.setPixmap(QtGui.QPixmap(sheet_music[GUI.index]))
         self.CurrentImage.setScaledContents(True)
         self.CurrentImage.setObjectName("sheetMusic")
         self.MainWindow.setCentralWidget(self.centalImage)
         # right arrow button
         self.RArrow = QtWidgets.QPushButton('', self.centalImage)
-        self.RArrow.setIconSize(QtCore.QSize(80,80))
-        self.RArrow.move(1500, 400)
-        self.RArrow.setIcon(QtGui.QIcon("GUI_buttons/rightArrow.jpg"))
+        self.RArrow.setIconSize(QtCore.QSize(int(Height/15),int(Height/15)))
+        self.RArrow.move(int(Width//1.5), int(Height//2.5))
+        self.RArrow.setIcon(QtGui.QIcon(r"GUI_buttons//rightArrow.jpg"))
         self.RArrow.setObjectName("RightArrow")
         self.RArrow.clicked.connect(self.goRight)
         # left arrow button
         self.LArrow = QtWidgets.QPushButton('', self.centalImage)
-        self.LArrow.setIconSize(QtCore.QSize(80,80))
-        self.LArrow.move(390, 400)
-        self.LArrow.setIcon(QtGui.QIcon("GUI_buttons/leftArrow.png"))
+        self.LArrow.setIconSize(QtCore.QSize(int(Height/15),int(Height/15)))
+        self.LArrow.move(int(Width//4.4), int(Height//2.5))
+        self.LArrow.setIcon(QtGui.QIcon(r"GUI_buttons//leftArrow.png"))
         self.LArrow.setObjectName("LeftArrow")
         self.LArrow.clicked.connect(self.goLeft)
         # exit button
         self.Exit = QtWidgets.QPushButton('', self.centalImage) 
-        self.Exit.setIconSize(QtCore.QSize(50,50))
-        self.Exit.move(0,0)
-        self.Exit.setIcon(QtGui.QIcon("GUI_buttons/exit.png"))
+        self.Exit.setIconSize(QtCore.QSize(int(Height/20),int(Height/20)))
+        self.Exit.setIcon(QtGui.QIcon(r"GUI_buttons//exit.png"))
         self.Exit.setObjectName("Exit")
         self.Exit.clicked.connect(self.closeWindow)
         # creating a process button to run the main file and wait for the audio output
         self.Pocess_button = QtWidgets.QPushButton('', self.centalImage) 
-        self.Pocess_button.setIconSize(QtCore.QSize(90,70))
-        self.Pocess_button.move(700,900)
-        self.Pocess_button.setIcon(QtGui.QIcon("GUI_buttons/Process.png"))
+        self.Pocess_button.setIconSize(QtCore.QSize((Height//15),(Height//15)))
+        self.Pocess_button.move(int(Width/2.3),int(Height/1.35))
+        self.Pocess_button.setIcon(QtGui.QIcon(r"GUI_buttons//Process.png"))
         self.Pocess_button.setObjectName("Exit")
         self.Pocess_button.clicked.connect(self.process)
         # menue bar for the GUI
@@ -165,8 +164,6 @@ class GUI():
             GUI.index += 1
             GUI.IMAGE = sheet_music[GUI.index]
             self.CurrentImage.setPixmap(QtGui.QPixmap(sheet_music[GUI.index]))
-        else:
-            pass
             
     # same for left
     def goLeft(self):
@@ -184,34 +181,6 @@ class GUI():
         self.MainWindow.close()
         self.readSheetMusic()
 
-    def playFromSpeaker(self, audioFile):
-        ''' GPIO.setmode(GPIO.BCM)
-        GPIO.setup(18, GPIO.OUT)
-
-        # Initialize pygame mixer
-        pygame.mixer.init()
-
-        # Load the audio file
-        audio_file = output
-        pygame.mixer.music.load(audio_file)
-
-        # Play the audio file
-        pygame.mixer.music.play()
-
-        # Wait for the audio to finish playing
-        while pygame.mixer.music.get_busy():
-            # Turn the speaker on
-            GPIO.output(18, GPIO.HIGH)
-            time.sleep(0.1)
-
-            # Turn the speaker off
-            GPIO.output(18, GPIO.LOW)
-            time.sleep(0.1)
-
-        # Clean up the GPIO pins
-        GPIO.cleanup()
-        '''
-
     def readSheetMusic(self):
 
         #creating a list to hold all the playable sheetmusic
@@ -220,7 +189,6 @@ class GUI():
         img_gray = img#cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         img = cv2.cvtColor(img_gray,cv2.COLOR_GRAY2RGB)
         ret,img_gray = cv2.threshold(img_gray,127,255,cv2.THRESH_BINARY)
-        img_gray = cv2.GaussianBlur(img_gray, (5, 5), 0)
         img_width, img_height = img_gray.shape[::-1]
 
         print("Matching staff image...")
