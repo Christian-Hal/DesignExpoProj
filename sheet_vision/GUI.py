@@ -184,6 +184,34 @@ class GUI():
         self.MainWindow.close()
         self.readSheetMusic()
 
+    def playFromSpeaker(self, audioFile):
+        ''' GPIO.setmode(GPIO.BCM)
+        GPIO.setup(18, GPIO.OUT)
+
+        # Initialize pygame mixer
+        pygame.mixer.init()
+
+        # Load the audio file
+        audio_file = output
+        pygame.mixer.music.load(audio_file)
+
+        # Play the audio file
+        pygame.mixer.music.play()
+
+        # Wait for the audio to finish playing
+        while pygame.mixer.music.get_busy():
+            # Turn the speaker on
+            GPIO.output(18, GPIO.HIGH)
+            time.sleep(0.1)
+
+            # Turn the speaker off
+            GPIO.output(18, GPIO.LOW)
+            time.sleep(0.1)
+
+        # Clean up the GPIO pins
+        GPIO.cleanup()
+        '''
+
     def readSheetMusic(self):
 
         #creating a list to hold all the playable sheetmusic
