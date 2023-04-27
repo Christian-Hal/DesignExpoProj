@@ -98,8 +98,8 @@ class GUI():
     running = False
     # set up the window
     def setUp(self):
-        Width = 2000
-        Height = 1200
+        Width = 1000
+        Height = 600
         # Main window
         self.MainWindow.setObjectName("ManinWindow")
         self.MainWindow.setGeometry(0,0,Width,Height)
