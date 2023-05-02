@@ -87,6 +87,8 @@ def open_file(path):
 sheet_music = [
         "playableMusic/fire.jpg",
         "playableMusic/lost.jpg",
+        "playableMusic/merry.png",
+        "playableMusic/joy.png"
     ]
 
 # creating the main window class for the GUI
@@ -98,8 +100,8 @@ class GUI():
     running = False
     # set up the window
     def setUp(self):
-        Width = 1000
-        Height = 600
+        Width = 1500
+        Height = 800
         # Main window
         self.MainWindow.setObjectName("ManinWindow")
         self.MainWindow.setGeometry(0,0,Width,Height)
@@ -189,6 +191,7 @@ class GUI():
         img_gray = img#cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         img = cv2.cvtColor(img_gray,cv2.COLOR_GRAY2RGB)
         ret,img_gray = cv2.threshold(img_gray,127,255,cv2.THRESH_BINARY)
+        img_gray = cv2.GaussianBlur(img_gray, (5, 5), 0)
         img_width, img_height = img_gray.shape[::-1]
 
         print("Matching staff image...")
